@@ -39,30 +39,28 @@ app.post('/webhook', function (req, res) {
   // the value of Action from api.ai is stored in req.body.result.action
   //console.log('Authentication Successful...')
 
-  
-  if(!req.body.result)  {
-    console.log("result is null")
-  }else{
-    console.log("result=>"+req.body.result)
-  }
-  
-  if(!req.body.result.parameters)  {
-    console.log("parameters is null")
-  }else{
-    console.log("parameters=>"+req.body.result.parameters)
-  }
-  
-  if(!req.body.result.parameters['given-name'])  {
-    console.log("parameters.given-name is null")
-  }else{
-    console.log("given-name=>"+req.body.result.parameters['given-name'])
-  }
   // parameters are stored in req.body.result.parameters
   var intentName = req.body.result.metadata && req.body.result.metadata['intentName'] ? req.body.result.metadata['intentName'] : 'DefaultIntent';
   console.log('intentName=>'+intentName)
-  var userName = req.body.result && req.body.result.parameters && req.body.result.parameters['given-name'] ? req.body.result.parameters['given-name'] : 'Guest';
-  
-  var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.'
+    var webhookReply = 'Something went wrong with your request.'
+  if(intentName == 'Default Welcome Intent'){
+      webhookReply = 'Welcome to TELUS. What can I do for you?'
+   }else if(intentName == 'BillCycleIntent'){
+     webhookReply = 'BillCycleIntent called'
+   }else if(intentName == 'CountryIntent'){
+     webhookReply = 'CountryIntent called'
+   }else if(intentName == 'CustomHelpIntent'){
+     webhookReply = 'CustomHelpIntent called'
+   }else if(intentName == 'RoamingPassIntent'){
+     webhookReply = 'RoamingPassIntent called'
+   }else if(intentName == 'RoamingPassAddIntent'){
+     webhookReply = 'RoamingPassAddIntent called'
+   }else if(intentName == 'RoamingPassRemoveIntent'){
+     webhookReply = 'RoamingPassAddIntent called'
+   }else{
+      webhookReply = 'Something went wrong with your request.'
+   }
+
 
   // the most basic response
   res.status(200).json({
