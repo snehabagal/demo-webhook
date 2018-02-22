@@ -70,6 +70,10 @@ app.post('/webhook', function (req, res) {
   })
 })
 
+function getBillingCycleIntentRes(request){
+  
+  
+}
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
 })
