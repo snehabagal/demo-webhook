@@ -71,8 +71,16 @@ app.post('/webhook', function (req, res) {
 })
 
 function getBillingCycleIntentRes(request){
-  
-  var userName = req.body.result && req.body.result.parameters && req.body.result.parameters['given-name'] ? req.body.result.parameters['given-name'] : 'Guest';
+  var key ='';
+  var lob='';
+  if(req.body.result && req.body.result.parameters){
+    if(req.body.result.parameters['key']){
+      key =req.body.result.parameters['key']; 
+    }
+    if(req.body.result.parameters['lob']){
+      lob =req.body.result.parameters['lob']; 
+    }
+  }
 }
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
