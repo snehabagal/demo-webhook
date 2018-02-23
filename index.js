@@ -48,15 +48,17 @@ app.post('/webhook', function (req, res) {
    }else if(intentName == 'BillCycleIntent'){
      webhookReply =  getBillingCycleIntentRes(req);
    }else if(intentName == 'CountryIntent'){
-     webhookReply = 'CountryIntent called'
+     webhookReply = getCountryIntentRes(req);
    }else if(intentName == 'CustomHelpIntent'){
      webhookReply = 'CustomHelpIntent called'
    }else if(intentName == 'RoamingPassIntent'){
-     webhookReply = 'RoamingPassIntent called'
+     webhookReply = getRoamingPassIntentRes(req);
    }else if(intentName == 'RoamingPassAddIntent'){
      webhookReply = 'RoamingPassAddIntent called'
    }else if(intentName == 'RoamingPassRemoveIntent'){
      webhookReply = 'RoamingPassAddIntent called'
+   }else if(intentName == 'RoamingPassWithCountryIntent'){
+     webhookReply = 'RoamingPassWithCountryIntent called';
    }else{
       webhookReply = 'Something went wrong with your request.'
    }
@@ -84,6 +86,21 @@ function getBillingCycleIntentRes(req){
   }
   //resText= 'BillCycleIntent with key='+key+' and lob='+lob;
   resText='Your current home services bill cycle rests on February 28,2018. Your current mobile bill cycle rests on February 28, 2018';
+  return resText;
+}
+
+function getCountryIntentRes(req){
+  var resText='';
+  var countryName='';
+  if(req.body.result && req.body.result.parameters&&req.body.result.parameters['countryName']){
+   countryName =req.body.result.parameters['countryName']; 
+  }
+  //resText= 'CountryIntent with countryName='+countryName;
+  if(countryName!=''){
+    resText='For '+countryName+' which information do you want like travel option, roaming passes, etc';
+  }else{
+    resText='Sorry I didn''t got the country. Would you please say it again.';
+  }
   return resText;
 }
 
