@@ -93,7 +93,7 @@ function getCountryIntentRes(req){
   var resText='';
   var countryName='';
   if(req.body.result && req.body.result.parameters&&req.body.result.parameters['countryName']){
-   countryName =req.body.result.parameters['countryName']; 
+   countryName =req.body.result.parameters['countryName.original']; 
   }
   //resText= 'CountryIntent with countryName='+countryName;
   if(countryName!=''){
@@ -117,7 +117,7 @@ function getRoamingPassIntentRes(req){
       loro =req.body.result.parameters['lob']; 
     }
      if(req.body.result.parameters['countryName']){
-      countryName =req.body.result.parameters['countryName']; 
+      countryName =req.body.result.parameters['countryName.original']; 
     }
   }
   //resText= 'RoamingPassIntent with key='+key+' and loro='+loro+'and countryName='+countryName;
