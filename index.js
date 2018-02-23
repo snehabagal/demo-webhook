@@ -82,7 +82,8 @@ function getBillingCycleIntentRes(req){
       lob =req.body.result.parameters['lob']; 
     }
   }
-  resText= 'BillCycleIntent with key='+key+' and lob='+lob;
+  //resText= 'BillCycleIntent with key='+key+' and lob='+lob;
+  resText='Your current home services bill cycle rests on February 28,2018. Your current mobile bill cycle rests on February 28, 2018';
   return resText;
 }
 app.listen(app.get('port'), function () {
