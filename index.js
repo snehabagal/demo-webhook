@@ -86,6 +86,31 @@ function getBillingCycleIntentRes(req){
   resText='Your current home services bill cycle rests on February 28,2018. Your current mobile bill cycle rests on February 28, 2018';
   return resText;
 }
+
+function getRoamingPassIntentRes(req){
+  var resText='';
+  var key ='';
+  var loro='';
+  var countryName='';
+  if(req.body.result && req.body.result.parameters){
+    if(req.body.result.parameters['key']){
+      key =req.body.result.parameters['key']; 
+    }
+    if(req.body.result.parameters['loro']){
+      loro =req.body.result.parameters['lob']; 
+    }
+     if(req.body.result.parameters['countryName']){
+      countryName =req.body.result.parameters['countryName']; 
+    }
+  }
+  //resText= 'RoamingPassIntent with key='+key+' and loro='+loro+'and countryName='+countryName;
+  if(countryName!=''){
+    resText='The followng roaming passes are available on your account for '+countryName+'.'+countryName+' easy roam.What else I can do for you?';
+  }else{
+    resText='The followng roaming passes are available on your account. Easy roam, international roam,US easy roam.';
+  }
+  return resText;
+}
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
 })
