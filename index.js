@@ -46,7 +46,7 @@ app.post('/webhook', function (req, res) {
   if(intentName == 'Default Welcome Intent'){
       webhookReply = 'Welcome to TELUS. What can I do for you?'
    }else if(intentName == 'BillCycleIntent'){
-     webhookReply = 'BillCycleIntent called'
+     webhookReply =  getBillingCycleIntentRes(req);
    }else if(intentName == 'CountryIntent'){
      webhookReply = 'CountryIntent called'
    }else if(intentName == 'CustomHelpIntent'){
@@ -71,6 +71,7 @@ app.post('/webhook', function (req, res) {
 })
 
 function getBillingCycleIntentRes(request){
+  var resText='';
   var key ='';
   var lob='';
   if(req.body.result && req.body.result.parameters){
@@ -81,6 +82,7 @@ function getBillingCycleIntentRes(request){
       lob =req.body.result.parameters['lob']; 
     }
   }
+  return resText;
 }
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
