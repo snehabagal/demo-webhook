@@ -128,6 +128,29 @@ function getRoamingPassIntentRes(req){
   }
   return resText;
 }
+
+function getRoamingPassWithCountryIntentRes(req){
+  var resText='';
+  var key ='';
+  var loro='';
+  var countryName='';
+  if(req.body.contexts){
+    for(var context of req.body.contexts){
+        if(context.name == 'havecountryname'){
+            if(context.parameters&&context.parameters['countryName']){
+                countryName =req.body.result.parameters['countryName']; 
+            }
+        }
+      }     
+  }
+  //resText= 'RoamingPassWithCountryIntent with key='+key+' and loro='+loro+'and countryName='+countryName;
+  if(countryName!=''){
+    resText='The followng roaming passes are available on your account for '+countryName+'.'+countryName+' easy roam.What else I can do for you?';
+  }else{
+    resText='The followng roaming passes are available on your account. Easy roam, international roam,US easy roam.';
+  }
+  return resText;
+}
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
 })
