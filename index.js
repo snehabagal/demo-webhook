@@ -137,8 +137,8 @@ function getRoamingPassWithCountryIntentRes(req){
   if(req.body.contexts){
     for(var context of req.body.contexts){
         if(context.name == 'havecountryname'){
-            if(context.parameters&&context.parameters['countryName']){
-                countryName =req.body.result.parameters['countryName']; 
+            if(context.parameters&&context.parameters['countryName.original']){
+                countryName =context.parameters['countryName.original']; 
             }
         }
       }     
