@@ -135,13 +135,19 @@ function getRoamingPassWithCountryIntentRes(req){
   var loro='';
   var countryName='';
   if(req.body.contexts){
+    console.log('contexts'=>req.body.contexts);
     for(var context of req.body.contexts){
+      console.log('context.name=>'+context.name);
         if(context.name == 'havecountryname'){
+            console.log("context.params"+context.parameters);
             if(context.parameters&&context.parameters['countryName.original']){
                 countryName =context.parameters['countryName.original']; 
             }
+            console.log("countryName=>"+countryName);
         }
       }     
+  }else{
+    console.log('No context=>'+req.body);
   }
   //resText= 'RoamingPassWithCountryIntent with key='+key+' and loro='+loro+'and countryName='+countryName;
   if(countryName!=''){
