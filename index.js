@@ -58,7 +58,7 @@ app.post('/webhook', function (req, res) {
    }else if(intentName == 'RoamingPassRemoveIntent'){
      webhookReply = 'RoamingPassAddIntent called'
    }else if(intentName == 'RoamingPassWithCountryIntent'){
-     webhookReply = 'RoamingPassWithCountryIntent called';
+     webhookReply = getRoamingPassWithCountryIntentRes(req);
    }else{
       webhookReply = 'Something went wrong with your request.'
    }
@@ -99,7 +99,7 @@ function getCountryIntentRes(req){
   if(countryName!=''){
     resText='For '+countryName+' which information do you want like travel option, roaming passes, etc';
   }else{
-    resText='Sorry I didn''t got the country. Would you please say it again.';
+    resText='Sorry I did not got the country. Would you please say it again.';
   }
   return resText;
 }
