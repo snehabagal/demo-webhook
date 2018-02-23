@@ -82,6 +82,7 @@ function getBillingCycleIntentRes(request){
       lob =req.body.result.parameters['lob']; 
     }
   }
+  resText= 'BillCycleIntent with key='+key+' and lob='+lob;
   return resText;
 }
 app.listen(app.get('port'), function () {
