@@ -70,7 +70,7 @@ app.post('/webhook', function (req, res) {
   })
 })
 
-function getBillingCycleIntentRes(request){
+function getBillingCycleIntentRes(req){
   var resText='';
   var key ='';
   var lob='';
